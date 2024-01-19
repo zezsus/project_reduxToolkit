@@ -1,0 +1,69 @@
+/** @format */
+
+.navbarComponent {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  padding: 1rem 0;
+
+  .navHeader {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+
+      h2 {
+        color: rgb(255, 255, 255);
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .navBody {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    input {
+      width: 60%;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    svg {
+      font-size: 2em;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  .navFooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+
+    span {
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    svg {
+      font-size: 1.5rem;
+      color: red;
+      cursor: pointer;
+    }
+  }
+}
