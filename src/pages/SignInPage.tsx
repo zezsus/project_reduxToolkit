@@ -44,6 +44,9 @@ const SignInPage: React.FC = () => {
 
   return (
     <div className='signInPage'>
+      <div>
+        <span>"username": "atuny0", "password": "9uQFF1Lh",</span>
+      </div>
       <div className='signInForm'>
         <div className='signInFormHeader'>
           <h2>Sign In</h2>

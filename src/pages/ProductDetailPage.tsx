@@ -1,7 +1,87 @@
 /** @format */
 
-const ProductDetailPage = () => {
-  return <div>ProductDetail</div>;
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store";
+import { getAllProduct } from "../features/products/productSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import "../assets/styles/pages/ProductDetailPage.scss";
+
+const ProductDetailPage: React.FC = () => {
+  const { id } = useParams();
+  const listProducts = useSelector(
+    (state: RootState) => state.products.listProduct
+  );
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getAllProduct());
+  }, [dispatch]);
+
+  const navigate = useNavigate();
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  if (!id) {
+    return <div>Invalid ID. Please provide a valid ID.</div>;
+  }
+  const productId = parseInt(id);
+
+  const product = listProducts.find((product: any) => product.id === productId);
+
+  if (!product) {
+    return <div>Product not found.</div>;
+  }
+
+  const listImages = product.images;
+
+  return (
+    <div className='productDetailPage'>
+      <div className='productDetaulHeader'>
+        <IoMdArrowRoundBack onClick={() => navigate("/")} />
+      </div>
+      <div className='productDetailBody'>
+        <div className='productDetailLeft'>
+          <div className='currentImage'>
+            <img
+              src={listImages[currentImageIndex]}
+              alt={product.title}
+              className='image'
+            />
+          </div>
+          <div className='listImage'>
+            {listImages.map((image: any, index: number) => {
+              return (
+                <img
+                  src={image}
+                  alt={image}
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <div className='productDetailRight'>
+          <div className='productDetailLeftHeader'>
+            <h2 className='title'>{product.title}</h2>
+            <span className='description'>{product.description}</span>
+            <span className='price'>$ {product.price}</span>
+            <span className='rating'>
+              <FaStar />
+              {product.rating}
+            </span>
+          </div>
+          <div className='productDetailLeftFooter'>
+            <button className='btnBuy'>Buy Now</button>
+            <button className='btnAddToCart'>Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ProductDetailPage;

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { getAllProduct } from "../features/products/productSlice";
 import "../assets/styles/pages/ProductPage.scss";
+import { Link } from "react-router-dom";
 
 const ProductPage: React.FC = () => {
   const listProducts = useSelector(
@@ -31,8 +32,10 @@ const ProductPage: React.FC = () => {
                 </span>
               </div>
               <div className='cardFooter'>
-                <button className="detailProduct">Detail</button>
-                <button className="addCart">Add Cart</button>
+                <Link to={`/product/${product.id}`}>
+                  <button className='detailProduct'>Detail</button>
+                </Link>
+                <button className='addCart'>Add To Cart</button>
               </div>
             </div>
           );

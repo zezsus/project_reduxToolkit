@@ -3,7 +3,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// First, create the thunk
 export const getAllProduct = createAsyncThunk(
   "products/getAllProduct",
   async () => {
@@ -29,16 +28,17 @@ const ProductSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAllProduct.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(getAllProduct.fulfilled, (state, action) => {
-      state.listProduct = action.payload;
-      state.isLoading = false;
-    });
-    builder.addCase(getAllProduct.rejected, (state) => {
-      state.isLoading = false;
-    });
+    builder
+      .addCase(getAllProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllProduct.fulfilled, (state, action) => {
+        state.listProduct = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getAllProduct.rejected, (state) => {
+        state.isLoading = false;
+      });
   },
 });
 

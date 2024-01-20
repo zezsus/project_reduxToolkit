@@ -62,14 +62,16 @@
           min-width: 100px;
           font-size: 1rem;
           font-weight: bold;
+          color: white;
+          cursor: pointer;
         }
 
         .detailProduct {
           background-color: rgb(59, 59, 234);
         }
 
-        .addCart{
-            background-color: orange;
+        .addCart {
+          background-color: orange;
         }
       }
     }
