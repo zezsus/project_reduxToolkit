@@ -37,10 +37,12 @@
         padding-left: 1rem;
         box-sizing: border-box;
         gap: 0.5rem;
+        padding: 0 0.5rem;
 
         .title {
           font-size: 1.5rem;
           font-weight: bold;
+          text-transform: capitalize;
         }
 
         .price {

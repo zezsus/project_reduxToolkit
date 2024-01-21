@@ -1,0 +1,43 @@
+/** @format */
+
+.cartPage {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+
+  .cartContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      width: 5rem;
+      cursor: pointer;
+    }
+
+    .text {
+      display: flex;
+      font-size: 1.1rem;
+      min-width: max-content;
+      cursor: pointer;
+      color: black;
+    }
+
+    .button {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+
+      svg {
+        font-size: 1.5rem;
+        color: red;
+        cursor: pointer;
+      }
+    }
+  }
+}

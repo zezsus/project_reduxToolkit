@@ -12,6 +12,7 @@
 
     svg {
       font-size: 2rem;
+      cursor: pointer;
     }
   }
 
@@ -114,7 +115,7 @@
 
         .btnBuy,
         .btnAddToCart {
-          padding: 0.5rem 1rem;
+          padding: 0.5rem 2rem;
           border: none;
           border-radius: 10px;
           min-width: 100px;

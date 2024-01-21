@@ -30,22 +30,54 @@
     justify-content: center;
     gap: 1rem;
 
-    input {
+    .srarch {
+      display: flex;
       width: 60%;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
 
-      &:focus {
-        outline: none;
+      input {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        font-size: 1rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .btnSearch {
+        background-color: white;
+        border: none;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 0 0.5rem;
+
+        svg {
+          color: black;
+          font-size: 1.5rem;
+        }
       }
     }
 
-    svg {
-      font-size: 2em;
-      color: white;
-      cursor: pointer;
+    .cart {
+      position: relative;
+      svg {
+        font-size: 2em;
+        color: white;
+        cursor: pointer;
+      }
+
+      .numbarCart {
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        font-size: 0.8rem;
+        background-color: white;
+        border-radius: 100%;
+        padding: 0.2rem 0.3rem;
+      }
     }
   }
 

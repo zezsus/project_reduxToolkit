@@ -3,21 +3,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
-import { getAllProduct } from "../features/products/productSlice";
+import { addToCart, getAllProduct } from "../features/products/productSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import "../assets/styles/pages/ProductDetailPage.scss";
+import { toast } from "react-toastify";
 
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams();
   const listProducts = useSelector(
     (state: RootState) => state.products.listProduct
   );
+
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getAllProduct());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(addToCart(product));
   }, [dispatch]);
 
   const navigate = useNavigate();
@@ -37,10 +43,15 @@ const ProductDetailPage: React.FC = () => {
 
   const listImages = product.images;
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    toast.success("Add to cart successfully");
+  };
+
   return (
     <div className='productDetailPage'>
       <div className='productDetaulHeader'>
-        <IoMdArrowRoundBack onClick={() => navigate("/")} />
+        <IoMdArrowRoundBack onClick={() => navigate("/home")} />
       </div>
       <div className='productDetailBody'>
         <div className='productDetailLeft'>
@@ -76,7 +87,9 @@ const ProductDetailPage: React.FC = () => {
           </div>
           <div className='productDetailLeftFooter'>
             <button className='btnBuy'>Buy Now</button>
-            <button className='btnAddToCart'>Add To Cart</button>
+            <button className='btnAddToCart' onClick={handleAddToCart}>
+              Add To Cart
+            </button>
           </div>
         </div>
       </div>

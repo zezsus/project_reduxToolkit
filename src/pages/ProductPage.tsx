@@ -16,6 +16,7 @@ const ProductPage: React.FC = () => {
   useEffect(() => {
     dispatch(getAllProduct());
   });
+
   return (
     <div className='productPage'>
       <div className='productBody'>
@@ -35,7 +36,6 @@ const ProductPage: React.FC = () => {
                 <Link to={`/product/${product.id}`}>
                   <button className='detailProduct'>Detail</button>
                 </Link>
-                <button className='addCart'>Add To Cart</button>
               </div>
             </div>
           );

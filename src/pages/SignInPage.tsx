@@ -32,7 +32,7 @@ const SignInPage: React.FC = () => {
           listUser[i].username === username &&
           listUser[i].password === password
         ) {
-          navigate("/");
+          navigate("/home");
           localStorage.setItem("User", JSON.stringify(listUser[i]));
         } else {
           setError("Incorect username or password");

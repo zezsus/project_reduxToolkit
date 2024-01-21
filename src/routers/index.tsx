@@ -24,7 +24,7 @@ export const routers = [
   },
 
   {
-    path: "/",
+    path: "/home",
     page: HomePage,
     isShowNavBar: true,
   },
