@@ -15,7 +15,7 @@ const ProductPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(getAllProduct());
-  });
+  }, [dispatch]);
 
   return (
     <div className='productPage'>

@@ -6,6 +6,7 @@ import { Fragment } from "react";
 import DefaultComponent from "./components/DefaultComponent";
 import { ToastContainer } from "react-toastify";
 import SignInPage from "./pages/SignInPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   let isSingIn;
@@ -19,25 +20,33 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          {!isSingIn ? (
-            <Route path='/' element={<SignInPage />} />
-          ) : (
-            routers.map((route) => {
-              const Page = route.page;
-              const NavBar = route.isShowNavBar ? DefaultComponent : Fragment;
-              return (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={
-                    <NavBar>
-                      <Page />
-                    </NavBar>
-                  }
-                />
-              );
-            })
-          )}
+          <Route
+            path='/'
+            element={
+              isSingIn ? (
+                <DefaultComponent>
+                  <HomePage />
+                </DefaultComponent>
+              ) : (
+                <SignInPage />
+              )
+            }
+          />
+          {routers.map((route) => {
+            const Page = route.page;
+            const NavBar = route.isShowNavBar ? DefaultComponent : Fragment;
+            return (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={
+                  <NavBar>
+                    <Page />
+                  </NavBar>
+                }
+              />
+            );
+          })}
         </Routes>
       </BrowserRouter>
 

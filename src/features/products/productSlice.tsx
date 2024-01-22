@@ -1,6 +1,11 @@
 /** @format */
 
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  Action,
+  PayloadAction,
+  createAsyncThunk,
+  createSlice,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getAllProduct = createAsyncThunk(
@@ -24,23 +29,37 @@ const initialState = {
   listCart: [],
   isLoading: true,
   isError: false,
-  numberProduct: 0,
 } as ProductSate;
 
 const ProductSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<any>) => {
-      state.numberProduct += 1;
-      state.listCart.push(action.payload);
+    searchProduct: (state, action: PayloadAction<any>) => {
+      const searchValue = action.payload;
+      if (searchValue !== "") {
+        state.listProduct = state.listProduct.filter(
+          (item: any) => item.title === searchValue
+        );
+      } else {
+        return state.listProduct;
+      }
     },
-    removeToCart: (state) => {
-      state.numberProduct -= 1;
-    },
-    getCartItem: (state) => {
-      console.log("cartItem", state.listCart);
 
+    addToCart: (state, action: PayloadAction<any>) => {
+      if (action.payload) {
+        state.listCart.push(action.payload);
+      }
+    },
+
+    removeToCart: (state, action: PayloadAction<any>) => {
+      const itemToRemove = action.payload;
+      state.listCart = state.listCart = state.listCart.filter(
+        (item: any) => item.id !== itemToRemove.id
+      );
+    },
+
+    getCartItem: (state) => {
       return state.listCart;
     },
   },
@@ -59,6 +78,7 @@ const ProductSlice = createSlice({
   },
 });
 
-export const { addToCart, getCartItem } = ProductSlice.actions;
+export const { searchProduct, addToCart, getCartItem, removeToCart } =
+  ProductSlice.actions;
 
 export default ProductSlice.reducer;

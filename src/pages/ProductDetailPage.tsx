@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
-import { addToCart, getAllProduct } from "../features/products/productSlice";
+import { addToCart } from "../features/products/productSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -17,10 +17,6 @@ const ProductDetailPage: React.FC = () => {
   );
 
   const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(getAllProduct());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(addToCart(product));
@@ -38,7 +34,11 @@ const ProductDetailPage: React.FC = () => {
   const product = listProducts.find((product: any) => product.id === productId);
 
   if (!product) {
-    return <div>Product not found.</div>;
+    return (
+      <div style={{ padding: "1rem", textAlign: "center", fontSize: "2rem" }}>
+        Product not found.
+      </div>
+    );
   }
 
   const listImages = product.images;
